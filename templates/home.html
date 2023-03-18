@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ author_name1 }}</title>
+    <style>
+      body {
+        background-color: #9dc183;
+        font-family: cursive;
+        font-size: 18px;
+      }
+
+      h1 {
+        color: #1c1c1c;
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      p {
+        margin: 20px;
+        text-align: justify;
+      }
+
+      h2 {
+        color: #1c1c1c;
+        margin: 20px;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        margin: 20px;
+      }
+
+      a {
+        text-decoration: none;
+        color: #1c1c1c;
+        border: 2px solid #1c1c1c;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      a:hover {
+        background-color: #1c1c1c;
+        color: #f2f2f2;
+      }
+
+      .author-image {
+        display: block;
+        margin: 0 auto;
+        max-width: 300px;
+        max-height: 300px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>{{ author_name1 }}</h1>
+    <img class="author-image" src="{{ url_for('static', filename='authors/author_name.jpg') }}" alt="{{ author_name }}">
+    <p>{{ bio }}</p>
+    <h2>Books</h2>
+    <ul>
+      {% for book in books %}
+        <li>
+          {% if book.amazon_id %}
+            (<a href="https://www.amazon.com/dp/{{ book.amazon_id }}">Buy on Amazon</a>)
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
